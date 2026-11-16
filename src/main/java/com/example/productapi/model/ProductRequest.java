@@ -7,13 +7,13 @@ import jakarta.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 
 /**
- * Girdi doğrulama (validation) kurallarını da OpenAPI şemasına taşır:
- * @NotBlank ve @PositiveOrZero anotasyonları Swagger UI'da "required" ve
- * "minimum: 0" olarak görünür.
+ * Validation rules are carried into the OpenAPI schema as well:
+ * @NotBlank and @PositiveOrZero show up in Swagger UI as "required" and
+ * "minimum: 0" respectively.
  */
 public record ProductRequest(
-        @NotBlank(message = "Ürün adı boş olamaz") String name,
-        @NotNull(message = "Fiyat zorunludur") @PositiveOrZero BigDecimal price,
+        @NotBlank(message = "Product name must not be blank") String name,
+        @NotNull(message = "Price is required") @PositiveOrZero BigDecimal price,
         String description
 ) {
 }

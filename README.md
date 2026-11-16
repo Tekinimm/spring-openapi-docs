@@ -1,41 +1,41 @@
-# Product API — springdoc-openapi ile Dokümantasyon
+# Product API — API Documentation with springdoc-openapi
 
-Junior seviye Spring Boot çalışma projesi. Konu: **OpenAPI dokümantasyonu (springdoc-openapi)**.
-Küçük bir ürün CRUD API'si üzerinde Swagger UI ve OpenAPI 3 şeması üretmeyi öğretir.
+A junior-level Spring Boot study project. Topic: **OpenAPI documentation with springdoc-openapi**.
+It teaches how to produce a Swagger UI and an OpenAPI 3 schema on top of a small product CRUD API.
 
-## Bu proje neyi öğretir?
+## What this project teaches
 
-- `springdoc-openapi-starter-webmvc-ui` bağımlılığı ile otomatik OpenAPI şeması üretimi
-- `@Operation`, `@ApiResponse`, `@Parameter`, `@Tag` ve `@Schema` anotasyonlarıyla dokümanı zenginleştirme
-- Bean Validation (`@NotBlank`, `@PositiveOrZero`) kurallarının şemaya yansıması
-- `@RestControllerAdvice` + `ProblemDetail` (RFC 7807) ile standart hata yanıtları
-- Katmanlı yapı: controller → service benzeri repository → model
+- Automatic OpenAPI schema generation with the `springdoc-openapi-starter-webmvc-ui` dependency
+- Enriching documentation with `@Operation`, `@ApiResponse`, `@Parameter`, `@Tag` and `@Schema` annotations
+- How Bean Validation rules (`@NotBlank`, `@PositiveOrZero`) are reflected into the schema
+- Standard error responses with `@RestControllerAdvice` + `ProblemDetail` (RFC 7807)
+- Layered structure: controller → repository → model
 
-## Nasıl çalıştırılır?
+## How to run
 
 ```bash
 mvn spring-boot:run
 ```
 
-Ardından tarayıcıda aç:
+Then open in your browser:
 
 - Swagger UI: http://localhost:8080/swagger-ui.html
-- Ham OpenAPI JSON: http://localhost:8080/v3/api-docs
+- Raw OpenAPI JSON: http://localhost:8080/v3/api-docs
 
-## Testler
+## Tests
 
 ```bash
 mvn test
 ```
 
-`MockMvc` ile uçtan uca (endpoint → doğrulama → hata işleme) testler yazılmıştır.
+End-to-end tests (endpoint → validation → error handling) are written with `MockMvc`.
 
-## Çalışma notları
+## Study notes
 
-1. springdoc bağımlılığı eklenince dokümantasyon **otomatik** oluşur; anotasyonlar sadece
-   açıklama ve örnek değer eklemek içindir.
-2. `@Schema`'yı record bileşenlerine koyarak alan açıklamalarını şemaya taşıdık.
-3. `GlobalExceptionHandler` bir `@RestControllerAdvice` olduğu için 404/400 yanıtları
-   dokümanda otomatik görünür.
-4. `ProblemDetail` kullanmak hata formatını standartlaştırır ve OpenAPI 3.0'ın
-   `application/problem+json` desteğiyle uyumludur.
+1. Once the springdoc dependency is added, documentation is generated **automatically**;
+   annotations only add descriptions and example values.
+2. `@Schema` on record components carries field descriptions into the schema.
+3. `GlobalExceptionHandler` is a `@RestControllerAdvice`, so 404/400 responses
+   appear in the documentation automatically.
+4. Using `ProblemDetail` standardizes the error format and aligns with OpenAPI 3.0's
+   `application/problem+json` support.

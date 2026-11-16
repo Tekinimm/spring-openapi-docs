@@ -24,14 +24,14 @@ class ProductControllerTest {
     @Test
     void createThenGetProduct() throws Exception {
         String body = """
-                {"name": "Test ürün", "price": 10.50, "description": "açıklama"}
+                {"name": "Test product", "price": 10.50, "description": "a description"}
                 """;
         String response = mockMvc.perform(post("/api/products")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(body))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").exists())
-                .andExpect(jsonPath("$.name").value("Test ürün"))
+                .andExpect(jsonPath("$.name").value("Test product"))
                 .andReturn().getResponse().getContentAsString();
 
         String id = objectMapper.readTree(response).get("id").asText();
@@ -44,7 +44,7 @@ class ProductControllerTest {
     void getMissingProductReturnsProblemDetail() throws Exception {
         mockMvc.perform(get("/api/products/9999"))
                 .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$.title").value("Ürün bulunamadı"));
+                .andExpect(jsonPath("$.title").value("Product not found"));
     }
 
     @Test

@@ -6,15 +6,15 @@ import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * API dokümanının başlık, sürüm ve iletişim bilgilerini tanımlar.
- * /v3/api-docs altında JSON, /swagger-ui.html altında interaktif UI yayınlanır.
+ * Defines the title, version and contact information of the API documentation.
+ * JSON is served under /v3/api-docs and the interactive UI under /swagger-ui.html.
  */
 @Configuration
 @OpenAPIDefinition(
         info = @Info(
                 title = "Product API",
                 version = "1.0.0",
-                description = "Junior seviye Spring Boot çalışma projesi: springdoc-openapi ile dokümantasyon",
+                description = "Junior-level Spring Boot study project: API documentation with springdoc-openapi",
                 contact = @Contact(name = "Tekinimm", url = "https://github.com/Tekinimm")
         )
 )
